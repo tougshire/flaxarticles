@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Article, Author, DocumentAnchor, Link, UploadedFile
+from .models import Article, Author, DocumentAnchor, Link, Tag, UploadedFile
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display=('title', 'author')
@@ -8,6 +8,7 @@ class ArticleAdmin(admin.ModelAdmin):
         'description',
         'author',
         'publish_date',
+        'tags'
     )
 
 admin.site.register(Article, ArticleAdmin)
@@ -19,10 +20,10 @@ class DocumentAnchorAdmin(admin.ModelAdmin):
     list_display=('article', 'ordinal')
 
 
-
 admin.site.register(DocumentAnchor,DocumentAnchorAdmin)
 
 admin.site.register(UploadedFile)
 
 admin.site.register(Link)
 
+admin.site.register(Tag)

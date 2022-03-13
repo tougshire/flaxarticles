@@ -13,8 +13,25 @@ class Author(models.Model):
         help_text='The name of the author'
     )
 
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return f"{self.name}"
+
+class Tag(models.Model):
+
+    name = models.CharField(
+        'name',
+        max_length=75,
+        help_text = 'The name of the tag'
+    )
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
 
 
 class Article(models.Model):
@@ -41,6 +58,11 @@ class Article(models.Model):
         on_delete=models.SET_NULL,
         related_name='article_responsibility',
         help_text='The author primarily responsible for executing this article'
+    )
+
+    tags=models.ManyToManyField(
+        'tag',
+        help_text="The tags to which the article belongs"
     )
 
     def __str__(self):

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import inlineformset_factory
-from .models import Author, Article, DocumentAnchor, Link, UploadedFile, EnteredText
+from .models import Author, Article, DocumentAnchor, Link, UploadedFile, EnteredText, Tag
 
 
 class AuthorForm(forms.ModelForm):
@@ -18,6 +18,7 @@ class ArticleForm(forms.ModelForm):
             'description',
             'publish_date',
             'author',
+            'tags',
         ]
 
 class DocumentAnchorForm(forms.ModelForm):
@@ -54,3 +55,11 @@ class EnteredTextForm(forms.ModelForm):
             'title',
             'text',
         ]
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = [
+            'name'
+        ]
+

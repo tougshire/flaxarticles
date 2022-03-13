@@ -166,6 +166,12 @@ class ArticleList(ListView):
         if 'delete_vista' in self.request.POST:
             delete_vista(self.request)
 
+        if 'tag' in self.kwargs:
+            print('tp m3df19', self.kwargs.get('tag'))
+            tag = self.kwargs.get('tag')
+            self.vistaobj['queryset'] = self.vistaobj['queryset'].filter(tags__id__in=[tag])
+            print('tp m3df21', queryset
+            )
         if 'vista_query_submitted' in self.request.POST:
 
             self.vistaobj = make_vista(

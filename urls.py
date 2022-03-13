@@ -12,6 +12,7 @@ urlpatterns = [
     path('article/<int:pk>/detail/', views.ArticleDetail.as_view(), name='article-detail'),
     path('article/<int:pk>/delete/', views.ArticleSoftDelete.as_view(), name='article-delete'),
     path('article/list/', views.ArticleList.as_view(), name='article-list'),
+    path('article/list/tag/<int:tag>/', views.ArticleList.as_view(), name='article-list'),
     path('author/', RedirectView.as_view(url=reverse_lazy('flaxarticles:author-list'))),
     path('author/create/', views.AuthorCreate.as_view(), name='author-create'),
     path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author-update'),

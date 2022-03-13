@@ -1,3 +1,34 @@
-<div class="field column">
-  {{ field }}
-</div>
+{% if loop %}
+  {% if forloop.first %}
+    <div class="field column">
+      {{ before_list }}
+  {% endif %}
+  {{ before_field }}
+  {% if url %}
+    <a href="{{ url }}">
+      {{ field }}
+    </a>
+  {% else %}
+    {{ field }}
+  {% endif %}
+  {{ after_field }}
+  {% if not forloop.last %}
+    {{ separator }}
+  {% else %}
+      {{ after_list }}
+    </div>
+  {% endif %}
+
+{% else %}
+  <div class="field column">
+    {{ before_field }}
+    {% if url %}
+      <a href="{{ url }}">
+        {{ field }}
+      </a>
+    {% else %}
+      {{ field }}
+    {% endif %}
+    {{ after_field }}
+  </div>
+{% endif %}
