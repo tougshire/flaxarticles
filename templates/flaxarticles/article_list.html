@@ -3,7 +3,9 @@
 {% block content %}
 
   <div class="list">
-    <div><a href="{% url 'flaxarticles:article-create' %}">create</a></div>
+    {% if perms.flaxarticles.add_article %}
+      <div><a href="{% url 'flaxarticles:article-create' %}">create</a></div>
+    {% endif %}
       <div class="row rowhead">
         {% include './_list_head.html' with field='' %}
         {% if 'title' in show_columns or not show_columns %}
