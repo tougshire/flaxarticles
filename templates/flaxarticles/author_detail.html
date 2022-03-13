@@ -1,0 +1,12 @@
+{% extends './_base.html' %}
+{% block content %}
+
+  {% include './author_detail_include.html' %}
+
+  <div>
+  <a href="{% url 'flaxarticles:author-update' object.pk %}">Edit</a>
+  </div>
+  <div>
+  <a href="{% url 'flaxarticles:author-delete' object.pk %}">Delete</a>
+  </div>
+{% endblock %}

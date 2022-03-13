@@ -1,0 +1,47 @@
+{% extends './_form.html' %}
+{% load static %}
+{% block content %}
+  <h2>{{ object }}</h2>
+  {{ form.errors }}
+  <form method="POST">
+    <div class="form">
+      {% csrf_token %}
+      {% for field in form.hidden_fields %}
+        {{ field }}
+      {% endfor %}
+
+      <div id="div_title">
+        {% include './_form_field.html' with field=form.title %}
+      </div>
+      <div id="div_description">
+        {% include './_form_field.html' with field=form.description %}
+      </div>
+      <div id="div_publish_date">
+        {% include './_form_field.html' with field=form.publish_date %}
+      </div>
+      <div id="div_author">
+        {% include './_form_field.html' with field=form.author %}
+      </div>
+
+      {% include './_form_button.html' with label="Submit Form" button='<button type="submit">Submit</button>' %}
+
+    </div>
+
+  </form>
+
+{% endblock %}
+{% block bottomscript %}
+  {{ block.super }}
+  <script>
+    addRelatedPopupButton( 'id_author', 'Author', '{% url "flaxarticles:author-create" %}')
+  function getControlIdsForPopups(modelName) {
+    controlIds = {
+      'Author': ['id_author']
+    }
+    return( controlIds[modelName])
+  }
+  </script>
+
+
+{% endblock %}
+

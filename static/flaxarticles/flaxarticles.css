@@ -6,20 +6,12 @@
 }
 
 #div_homelogo {
-    margin: 0 auto;
+    margin: 5em auto;
     text-align: center;
 }
 #img_homelogo {
     text-align: center;
     width:100%;
-}
-div .attribution {
-    font-size:.5em;
-    text-align: right;
-}
-div.detail iframe {
-    width:100%;
-    height:1080px;
 }
 
 .menu-top, .app-menu {
@@ -106,6 +98,9 @@ div.detail iframe {
 }
 
 
+
+
+
 .relatedset {
     margin-left:2em;
 }
@@ -170,7 +165,3 @@ div.detail iframe {
     display:flex;
 }
 
-.grayedout {
-    background-color:#ccc;
-    color:#666;
-}

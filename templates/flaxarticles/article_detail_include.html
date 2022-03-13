@@ -1,0 +1,16 @@
+  <h2>{{ object }}</h2>
+
+  <div class="detail">
+    {% include './_detail_field.html' with label=article_labels.title field=object.title %}
+    {% include './_detail_field.html' with label=article_labels.description field=object.description %}
+    {% include './_detail_field.html' with label=article_labels.author field=object.author %}
+    {% include './_detail_field.html' with label=article_labels.publish_date field=object.publish_date %}
+    {% for anchor in article.documentanchor_set.all %}
+    {% for uploadedfile in anchor.uploadedfile_set.all %}
+        <iframe class="uploaded_file" src="{{ uploadedfile.file.url }}"></iframe>
+      {% endfor %}
+    {% endfor %}
+
+  </div>
+
+
