@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Article, Author, DocumentAnchor, Link, Tag, UploadedFile
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display=('title', 'author')
+
     fields=(
         'title',
         'description',

@@ -50,18 +50,16 @@ class Article(models.Model):
         default=datetime.now,
         help_text='The date and time the article was published'
     )
-    author = models.ForeignKey(
+    author = models.ManyToManyField(
         Author,
-        verbose_name='author',
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         related_name='article_responsibility',
-        help_text='The author primarily responsible for executing this article'
+        help_text='The author or authors of this article'
     )
 
     tags=models.ManyToManyField(
         'tag',
+        blank=True,
         help_text="The tags to which the article belongs"
     )
 
