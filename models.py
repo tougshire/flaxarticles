@@ -50,8 +50,9 @@ class Article(models.Model):
         default=datetime.now,
         help_text='The date and time the article was published'
     )
-    author = models.ManyToManyField(
+    authors = models.ManyToManyField(
         Author,
+        through='Authorship',
         blank=True,
         related_name='article_responsibility',
         help_text='The author or authors of this article'
@@ -66,9 +67,31 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-
     class Meta:
         ordering=['-publish_date']
+
+class Authorship(models.Model):
+    article=models.ForeignKey(
+        Article,
+        on_delete = models.CASCADE,
+        help_text = 'The article'
+    )
+    author=models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        help_text='The author of the article'
+    )
+    order=models.IntegerField(
+        'order',
+        default=1000,
+        help_text='The order in which this author is displayed in the credits for the article (default set very high)'
+    )
+
+    def __str__(self):
+        return '{}:{}:{}'.format(self.author, self.article, self.order)
+
+    class Meta:
+        ordering = [ 'article', 'order', 'author', ]
 
 
 class DocumentAnchor(models.Model):

@@ -1,26 +1,7 @@
-{% if loop %}
-  {% if forloop.first %}
-    <div class="field column">
-      {{ before_list }}
-  {% endif %}
-  {{ before_field }}
-  {% if url %}
-    <a href="{{ url }}">
-      {{ field }}
-    </a>
-  {% else %}
-    {{ field }}
-  {% endif %}
-  {{ after_field }}
-  {% if not forloop.last %}
-    {{ separator }}
-  {% else %}
-      {{ after_list }}
-    </div>
-  {% endif %}
-
-{% else %}
+{% if not fragment or fragment == 'begin' %}
   <div class="field column">
+{% endif %}
+{% if not fragment or fragment == 'middle' %}
     {{ before_field }}
     {% if url %}
       <a href="{{ url }}">
@@ -30,5 +11,7 @@
       {{ field }}
     {% endif %}
     {{ after_field }}
+{% endif %}
+{% if not fragment or fragment == 'end' %}
   </div>
 {% endif %}

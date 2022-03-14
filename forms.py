@@ -17,7 +17,6 @@ class ArticleForm(forms.ModelForm):
             'title',
             'description',
             'publish_date',
-            'author',
             'tags',
         ]
 

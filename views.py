@@ -122,13 +122,13 @@ class ArticleList(ListView):
             'title',
             'description',
             'publish_date',
-            'author',
+            'authors',
         ]
 
         for fieldname in [
             'title',
             'publish_date',
-            'author',
+            'authors',
         ]:
             self.vista_settings['order_by_fields_available'].append(fieldname)
             self.vista_settings['order_by_fields_available'].append('-' + fieldname)
@@ -137,7 +137,7 @@ class ArticleList(ListView):
             'title',
             'description',
             'publish_date',
-            'author',
+            'authors',
         ]:
             self.vista_settings['columns_available'].append(fieldname)
 
@@ -167,11 +167,12 @@ class ArticleList(ListView):
             delete_vista(self.request)
 
         if 'tag' in self.kwargs:
-            print('tp m3df19', self.kwargs.get('tag'))
             tag = self.kwargs.get('tag')
             self.vistaobj['queryset'] = self.vistaobj['queryset'].filter(tags__id__in=[tag])
-            print('tp m3df21', queryset
-            )
+        elif 'author' in self.kwargs:
+            author = self.kwargs.get('author')
+            self.vistaobj['queryset'] = self.vistaobj['queryset'].filter(authors__id__in=[author])
+
         if 'vista_query_submitted' in self.request.POST:
 
             self.vistaobj = make_vista(

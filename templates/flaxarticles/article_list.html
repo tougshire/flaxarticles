@@ -17,8 +17,8 @@
         {% if 'publish_date' in show_columns or not show_columns %}
           {% include './_list_head.html' with field=article_labels.publish_date %}
         {% endif %}
-        {% if 'author' in show_columns or not show_columns %}
-          {% include './_list_head.html' with field=article_labels.author %}
+        {% if 'authors' in show_columns or not show_columns %}
+          {% include './_list_head.html' with field=article_labels.authors %}
         {% endif %}
         {% if 'tags' in show_columns or not show_columns %}
           {% include './_list_head.html' with field=article_labels.tags %}
@@ -38,14 +38,22 @@
           {% if 'publish_date' in show_columns or not show_columns %}
             {% include './_list_field.html' with field=item.publish_date|date:'Y-m-d' %}
           {% endif %}
-          {% if 'author' in show_columns or not show_columns %}
-            {% include './_list_field.html' with field=item.author %}
+          {% if 'authors' in show_columns or not show_columns %}
+            {% include './_list_field.html' with fragment="begin" %}
+            {% for author in item.authors.all %}
+              {% url 'flaxarticles:article-list' author.id as authorurl %}
+              {% include './_list_field.html' with fragment="middle" field=author url=authorurl %}
+            {% endfor %}
+            {% include './_list_field.html' with fragment="end" %}
           {% endif %}
           {% if 'tags' in show_columns or not show_columns %}
+            {% include './_list_field.html' with fragment="begin" %}
             {% for tag in item.tags.all %}
-            {% url 'flaxarticles:article-list' tag.id as tagurl %}
-              {% include './_list_field.html' with loop="loop" field=tag url=tagurl forloop=forloop separator=' '%}
+              {% url 'flaxarticles:article-list' tag.id as tagurl %}
+              {% include './_list_field.html' with fragment="middle" field=tag url=tagurl %}
             {% endfor %}
+            {% include './_list_field.html' with fragment="end" %}
+
           {% endif %}
 
         </div>

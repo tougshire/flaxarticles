@@ -1,12 +1,11 @@
 from django.contrib import admin
-from .models import Article, Author, DocumentAnchor, Link, Tag, UploadedFile
+from .models import Article, Author, Authorship, DocumentAnchor, Link, Tag, UploadedFile
 
 class ArticleAdmin(admin.ModelAdmin):
 
     fields=(
         'title',
         'description',
-        'author',
         'publish_date',
         'tags'
     )
@@ -14,6 +13,8 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(Article, ArticleAdmin)
 
 admin.site.register(Author)
+
+admin.site.register(Authorship)
 
 class DocumentAnchorAdmin(admin.ModelAdmin):
 
